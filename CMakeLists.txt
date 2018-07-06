@@ -12,8 +12,11 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
+  image_transport
+  OpenCV REQUIRED
 )
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -120,6 +123,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -149,7 +153,8 @@ add_dependencies(camera_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORT
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(camera_node
-   ${catkin_LIBRARIES} -std=c++11
+   ${catkin_LIBRARIES}
+   camere_node  ${OpenCV_LIBS}
 )
 
 #############
